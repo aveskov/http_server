@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+
+<body>
+
+<div>
+	<input type="button" id="httpsButton" value="Connect to https server">
+</div>
+
+<div>
+	<input type="button" id="httpButton" value="Connect to http server">
+</div>
+
+<script type="text/javascript">
+	function run(url) {
+		$.ajax({
+        		url: url,
+        		complete: function (response) {
+           			alert(response.responseText);
+        		},
+        		error: function (xhr, status) {
+        			alert("failed with status: " + status);
+        		},
+    		});
+	}
+
+	document.addEventListener("DOMContentLoaded", function (event) {
+       		document.getElementById("httpsButton").addEventListener("click", function() {
+			run("https://localhost:3333/starter/start");
+        	});
+
+       		document.getElementById("httpButton").addEventListener("click", function() {
+			run("http://localhost:3334/starter/start");
+        	});
+	});
+</script>
+</body>
+</html>
